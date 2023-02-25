@@ -8,6 +8,7 @@ import { Cart } from "./pages/cart/cart";
 import { ShopContextProvider } from "./context/shop-context";
 import { PageNotFound } from "./pages/not-found";
 import { Register } from "./pages/register/register";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   return (
@@ -18,8 +19,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/cart" element={<Cart />} />
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/cart" element={<Cart />} />
+            </Route>
             <Route path="/register" element={<Register />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
